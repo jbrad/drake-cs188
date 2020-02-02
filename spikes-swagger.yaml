@@ -3,6 +3,13 @@ info:
   description: "RESTful API for Drake University Apparel"
   version: "1.0.0"
   title: "Spikes API"
+servers:
+  - url: http://localhost:5555
+    description: Local Development
+  - url: https://api-dev.drake.drake/
+    description: Dev Environment
+  - url: https://api.drake.drake/
+    description: Prod Environment
 tags:
 - name: "item"
   description: "an item in the apparel store"
@@ -13,6 +20,7 @@ tags:
   -name: "cart items"
   description: "all the items in the cart"
 paths:
+  #************item related paths*************
   /items:
     get:
       description: Returns a collection of items
@@ -140,6 +148,193 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+
+#*************customer related paths****************
+
+  /customers:
+    get:
+      description: returns collection of Customers
+      responses:
+        "200":
+          description: collection of cusotmers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Items"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      description: Adds a new customer
+      requestBody:
+        description: item to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "201":
+          description: item successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "303":
+          description: See Other
+          headers:
+            Location:
+              schema:
+                type: string
+              description: location of an existing customer
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+    "/customers/{customerId}":
+      get:
+        description: returns a single customer
+        parameters:
+          - name: itemId
+            in: path
+            description: indentifier for a customer
+            required: true
+            schema:
+              type: string
+        responses:
+          "200":
+            description: a customer
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Customer"
+          "404":
+            description: customer not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/CustomerNotFound"
+          default:
+            description: unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+      put:
+        description: Updates an item
+        requestBody:
+          description: Customer to update
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        parameters:
+          - name: customerId
+            in: path
+            description: Indetifier for a customer
+            required: true
+            schema:
+              type: string
+              format: uuid
+        responses:
+          "204":
+            description: Customer successfully updated
+          "404":
+            description: Customer not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/CustomerNotFound"
+          delete:
+            description: deletes a customer
+            parameters:
+              - name: customerId
+                in: path
+                description: Identifier for a customer
+                required: true
+                schema:
+                  type: string
+                  format: uuid
+            responses:
+              "204":
+                description: Customer successfully deleted
+              "404":
+                description: customer not found
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/CustomerNotFound"
+              default:
+                description: Unexpected error
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+
+#********************  cart related paths *****************
+        /carts:
+          get:
+            description: returns collection of carts
+            responses:
+              "200":
+                description: collection of carts
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Carts"
+              "401":
+                description: Unauthorized
+              "403":
+                description: Forbidden
+              default:
+                description: Unexpected error
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+          post:
+            description: Adds a new cart
+            requestBody:
+              description: cart to add
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Cart"
+            responses:
+              "201":
+                description: cart successfully created
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Cart"
+              "303":
+                description: See Other
+                headers:
+                  Location:
+                    schema:
+                      type: string
+                    description: location of an existing cart
+              "401":
+                description: Unauthorized
+              "403":
+                description: Forbidden
+
+        
+
+
+
+
+
+#************** schemas **************************
 components:
   schemas:
     Item:
@@ -278,6 +473,37 @@ Cart:
       belongsTo: "Hannah"
       createdDate: "Horowitz"
       purchasedDate: "hannah.h@email.com"
+
+Carts:
+  type: array
+  properties:
+    items:
+      type: array
+      items:
+        $ref: "#components/schemas/Cart"
+  example:
+    - cartId: def5cd03-7bf4-49e9-8f0b-380f90c86ec1
+      belongsTo: "Hannah"
+      createdDate: "Horowitz"
+      purchasedDate: "hannah.h@email.com"
+    - cartId: def5cd03-7bf4-49e9-8f0b-380f90c86ec1
+      belongsTo: "Hannah"
+      createdDate: "Horowitz"
+      purchasedDate: "hannah.h@email.com"
+
+CartNotFound:
+  type: object
+  properties:
+    statusCode:
+      type: integer
+    error:
+      type: string
+    message:
+      type: string
+  example:
+    statusCode: 404
+    error: Not Found
+    message: Cart not found
 
 cartItems:
   type: object

@@ -328,9 +328,168 @@ paths:
               "403":
                 description: Forbidden
 
-        
+        "/carts/{cartId}":
+          get:
+            description: Returns a cart
+            parameters:
+              - name: cartId
+                in: path
+                description: Identifier for a cart
+                required: true
+                schema:
+                  type: string
+            responses:
+              "200":
+                description: A cart
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Cart"
+              "404":
+                description: Cart not found
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/CartNotFound"
+              default:
+                description: Unexpected error
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+          put:
+            description: Updates a cart
+            requestBody:
+              description: cart to update
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Cart"
+            parameters:
+              - name: cartId
+                in: path
+                description: Identifier for a cart
+                required: true
+                schema:
+                  type: string
+                  format: uuid
+            responses:
+              "204":
+                description: cart successfully updated
+              "404":
+                description: cart not found
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/CartNotFound"
+          delete:
+            description: Deletes a cart
+            parameters:
+              - name: cartId
+                in: path
+                description: Identifier for a cart
+                required: true
+                schema:
+                  type: string
+                  format: uuid
+            responses:
+              "204":
+                description: cart successfully deleted
+              "404":
+                description: cart not found
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/CartNotFound"
+              default:
+                description: Unexpected error
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
 
-
+#************** cart item **********
+"/CartItems/{cartId}":
+  get:
+    description: get cart Items
+    parameters:
+      - name: cartId
+        in: path
+        description: Identifier for a cart item
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: A cart item
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/cartItems"
+      "404":
+        description: Cart not found
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartNotFound"
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
+  put:
+    description: Updates a cart item
+    requestBody:
+      description: cart item to update
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/cartItems"
+    parameters:
+      - name: cartId
+        in: path
+        description: Identifier for a cart
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      "204":
+        description: cart successfully updated
+      "404":
+        description: cart not found
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartNotFound"
+  delete:
+    description: Deletes a cart item
+    parameters:
+      - name: cartId
+        in: path
+        description: Identifier for a cart
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      "204":
+        description: cart successfully deleted
+      "404":
+        description: cart not found
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartNotFound"
+      default:
+        description: Unexpected error
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Error"
 
 
 
@@ -508,6 +667,9 @@ CartNotFound:
 cartItems:
   type: object
   properties:
+    cartId:
+      type: string
+      format: uuid
     whatItems:
       type: array
       items:
@@ -517,8 +679,10 @@ cartItems:
     quantity:
       type: integer
       format: int32
-
-
+  example:
+    cartId: def5cd03-7bf4-49e9-8f0b-380f90c86ec1
+    whatItems: "[]"
+    quantity: 0
 
     Error:
       type: object

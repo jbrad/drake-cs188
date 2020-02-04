@@ -158,7 +158,7 @@ components:
       example:
         itemId: def5cd03-7bf4-49e9-8f0b-380f90c86ec1
         name: "Drake Bulldogs Sweatshirt"
-        description: Get comfortable in these sweats and look fly while wearing them
+        description: Get comfortable in these sweats and look marty mcfly while wearing them
         price: 19.99
     Items:
       type: array
@@ -170,11 +170,11 @@ components:
       example:
         - itemId: def5cd03-7bf4-49e9-8f0b-380f90c86ec1
           name: "Drake Bulldogs Sweatshirt"
-          description: Get comfortable in these sweats and look fly while wearing them
+          description: Get comfortable in these sweats and look marty mcfly while wearing them
           price: 19.99
         - itemId: 504550bc-d21e-43c3-8767-0c1bd59a173c
           name: "Drake Bulldogs Sweatpants"
-          description: Get comfortable in these sweats and look fly while wearing them
+          description: Get comfortable in these sweats and look marty mcfly while wearing them
           price: 19.99
     ItemNotFound:
       type: object

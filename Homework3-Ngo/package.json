@@ -1,0 +1,11 @@
+{
+  "name": "homework3-ngo",
+  "version": "1.0.0",
+  "description": "CS188 JavaScript Practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vy Ngo",
+  "license": "ISC"
+}

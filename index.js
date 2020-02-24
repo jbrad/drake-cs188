@@ -14,20 +14,26 @@ const init = async () => {
     const samId = uuid.v4();
     const customerSam = {
         customerId: samId,
-        name: 'Sam',
-        age: 20
+        firstName: 'Sam',
+        lastname: 'Iam',
+        email: 'sam.iam@drake.edu',
+        phoneNumber: '555-555-5555'
     };
 
     const customerSamantha = {
         customerId: uuid.v4(),
-        name: 'Samantha',
-        age: 21
+        firstName: 'Samantha',
+        lastname: 'something',
+        email: 'samantha.something@drake.edu',
+        phoneNumber: '555-123-5555'
     };
 
     const customerDundie = {
         customerId: uuid.v4(),
-        name: 'Dundie',
-        age: 55
+        firstName: 'Dundie',
+        lastname: 'Miff',
+        email: 'dundie.miff@drake.edu',
+        phoneNumber: '555-321-5555'
     };
 
     let customers = [customerSam, customerSamantha, customerDundie];
@@ -105,7 +111,7 @@ const init = async () => {
             const {customerId} = request.params;
             const updatedCustomer = request.payload;
 
-            if (customerId === samId && updatedCustomer.age !== 20) {
+            if (customerId === samId && updatedCustomer.number !== '555-555-5555') {
                 return h.response().code(422);
             }
 

@@ -1,20 +1,24 @@
-const item = {
-    itemId: '02bbdbc7-e22e-4153-abd8-b5732a4ba6b5',
-    name: 'Ball cap',
-    description: 'Drake stuff',
-    price: 19.99,
-    size: 'Large'
+const Hapi = require('@hapi/hapi');
+
+const {initCustomerControllers} = require('./controllers/customer-controller');
+const {initCartControllers} = require('./controllers/cart-controller');
+
+const init = async () => {
+    const server = Hapi.server({
+        port: 3000,
+        host: 'localhost'
+    });
+
+    initCustomerControllers(server);
+    initCartControllers(server);
+
+    await server.start();
+    console.log('Server running on %s', server.info.uri);
 };
 
-const firstName = 'Jason';
-const lastName = 'Bradley';
+process.on('unhandledRejection', (err) => {
+    console.log(err);
+    process.exit(1);
+});
 
-const customer = {
-    firstName,
-    lastName,
-    email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@drake.edu`,
-    phoneNumber: '+15155555555'
-};
-
-console.log('item', item);
-console.log('customer', customer);
+init();

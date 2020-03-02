@@ -1,0 +1,15 @@
+{
+  "name": "drake-cs188",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "uuid": "^3.4.0"
+  }
+}

@@ -1,13 +1,10 @@
 const uuid = require('uuid');
-const Chance = require('chance');
 
 const {
     selectCarts,
     selectCartByCartId,
     selectCartsByCustomerId
 } = require('../../repositories/cart-repository');
-
-const chance = new Chance();
 
 describe('cart repository', () => {
     let firstCartId,

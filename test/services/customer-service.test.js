@@ -41,13 +41,12 @@ describe('getAllCustomers', () => {
             }]
         });
 
-        selectCustomerByCustomerId.mockReturnValue({
-            rows: [{
-                'customer_id': expectedCustomerId,
-                'first_name': expectedCustomerFirstName,
-                'last_name': expectedCustomerLastName,
-                'email': expectedCustomerEmail
-            }]
+        selectCustomerByCustomerId.mockReturnValue({            
+            'customer_id': expectedCustomerId,
+            'first_name': expectedCustomerFirstName,
+            'last_name': expectedCustomerLastName,
+            'email': expectedCustomerEmail
+            
         });
     });
 

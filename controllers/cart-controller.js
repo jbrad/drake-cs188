@@ -7,9 +7,7 @@ const getCartsRoute = (server) => {
     server.route({
         path: '/carts',
         method: 'GET',
-        handler: (request, h) => {
-            return getAllCarts();
-        }
+        handler: (request, h) => getAllCarts()
     });
 };
 

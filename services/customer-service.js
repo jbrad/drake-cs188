@@ -18,6 +18,7 @@ const getAllCustomers = () => {
 
 const getCustomerByCustomerId = (customerId) => {
     const customer = selectCustomerByCustomerId(customerId);
+    console.log(customer)
 
     return mapToModel(customer);
 };

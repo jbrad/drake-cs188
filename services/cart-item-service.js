@@ -1,36 +1,36 @@
 const {
-  selectCartItems,
-  selectCartItemsByCartItemId,
-  selectCartItemsByCartId
-} = require("../repositories/cart-items-repository");
+    selectCartItems,
+    selectCartItemsByCartItemId,
+    selectCartItemsByCartId
+} = require('../repositories/cart-items-repository');
 
-const mapToModel = cartItem => ({
-  cartItemId: cartItem["cart_item_id"],
-  cartId: cartItem["cart_id"],
-  itemId: cartItem["item_id"],
-  quantity: cartItem["quantity"]
+const mapToModel = (cartItem) => ({
+    cartItemId: cartItem['cart_item_id'],
+    cartId: cartItem['cart_id'],
+    itemId: cartItem['item_id'],
+    quantity: cartItem['quantity']
 });
 
 const getAllCartItems = () => {
-  const { rows } = selectCartItems();
+    const {rows} = selectCartItems();
 
-  return rows.map(mapToModel);
+    return rows.map(mapToModel);
 };
 
-const getCartItemByCartItemId = cartItemId => {
-  const cart = selectCartItemsByCartItemId(cartItemId);
+const getCartItemByCartItemId = (cartItemId) => {
+    const cart = selectCartItemsByCartItemId(cartItemId);
 
-  return mapToModel(cart);
+    return mapToModel(cart);
 };
 
-const getCartItemByCartId = cartId => {
-  const { rows } = selectCartItemsByCartId(cartId);
+const getCartItemByCartId = (cartId) => {
+    const {rows} = selectCartItemsByCartId(cartId);
 
-  return rows.map(mapToModel);
+    return rows.map(mapToModel);
 };
 
 module.exports = {
-  getAllCartItems,
-  getCartItemByCartItemId,
-  getCartItemsByCartId
+    getAllCartItems,
+    getCartItemByCartItemId,
+    getCartItemsByCartId
 };

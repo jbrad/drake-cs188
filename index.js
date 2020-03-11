@@ -5,8 +5,8 @@ const {initCartControllers} = require('./controllers/cart-controller');
 
 const init = async () => {
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
+        host: 'localhost',
+        port: 3000
     });
 
     initCustomerControllers(server);

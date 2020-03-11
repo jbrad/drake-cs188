@@ -6,9 +6,7 @@ const {
 
 const mapToModel = (cart) => ({
     cartId: cart['cart_id'],
-    customerId: cart['customer_id'],
-    createdDate: cart['created_date'],
-    purchasedDate: cart['purchased_date']
+    customerId: cart['customer_id']
 });
 
 const getAllCarts = () => {

@@ -33,7 +33,7 @@ describe('cart repository', () => {
             const actualCarts = selectCarts();
             const [actualFirstCart, actualSecondCart] = actualCarts.rows;
 
-            expect(actualFirstCart).toStrictEqual(expectedFirstCart);
+            expect(actualFirstCart).toEqual(expectedFirstCart);
             expect(actualSecondCart).toEqual(expectedSecondCart);
         });
     });

@@ -6,8 +6,6 @@ const {getCartsByCustomerId} = require('../services/cart-service');
 
 const getCustomersCartsRoute = (server) => {
     server.route({
-        path: '/customers/{customerId}/carts',
-        method: 'GET',
         handler: (request, h) => {
             const customerId = request.params.customerId;
             const customer = getCustomerByCustomerId(customerId);
@@ -17,33 +15,33 @@ const getCustomersCartsRoute = (server) => {
             }
 
             return getCartsByCustomerId(customerId);
-        }
+        },
+        method: 'GET',
+        path: '/customers/{customerId}/carts'
     });
 };
 
 const getCustomersRoute = (server) => {
     server.route({
-        path: '/customers',
+        handler: () => getAllCustomers(),
         method: 'GET',
-        handler: (request, h) => {
-            return getAllCustomers();
-        }
+        path: '/customers'
     });
 };
 
 const getCustomerByCustomerIdRoute = (server) => {
     server.route({
-        path: '/customers/{customerId}',
-        method: 'GET',
         handler: (request, h) => {
             const customer = getCustomerByCustomerId(request.params.customerId);
 
             if (!customer) {
                 return h.response().code(404);
             }
-            
+
             return customer;
-        }
+        },
+        method: 'GET',
+        path: '/customers/{customerId}'
     });
 };
 

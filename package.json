@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .json --ext .js",
     "verify": "npm run lint && npm run test"
   },
-  "author": "",
+  "author": "jason.bradley@me.com",
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",

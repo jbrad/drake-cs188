@@ -4,7 +4,6 @@ const {
     getAllCustomers,
     getCustomerByCustomerId
 } = require('../../services/customer-service');
-
 const {
     selectCustomers,
     selectCustomerByCustomerId
@@ -14,39 +13,38 @@ jest.mock('../../repositories/customer-repository');
 
 describe('getAllCustomers', () => {
     let expectedCustomer,
-        expectedCustomerId, 
+        expectedCustomerId,
         expectedCustomerFirstName,
         expectedCustomerLastName,
-        expectedCustomerEmail
+        expectedCustomerEmail;
 
     beforeEach(() => {
         expectedCustomerId = uuid.v4();
-        expectedCustomerFirstName = 'Vy'
-        expectedCustomerLastName = 'Ngo'
-        expectedCustomerEmail = 'vy.ngo@drake.edu'
+        expectedCustomerFirstName = 'Vy';
+        expectedCustomerLastName = 'Ngo';
+        expectedCustomerEmail = 'vy.ngo@drake.edu';
 
         expectedCustomer = {
             customerId: expectedCustomerId,
+            email: expectedCustomerEmail,
             firstName: expectedCustomerFirstName,
-            lastName: expectedCustomerLastName,
-            email: expectedCustomerEmail
+            lastName: expectedCustomerLastName
         };
 
         selectCustomers.mockReturnValue({
             rows: [{
-                'customer_id': expectedCustomerId,
-                'first_name': expectedCustomerFirstName,
-                'last_name': expectedCustomerLastName,
-                'email': expectedCustomerEmail
+                customerId: expectedCustomerId,
+                email: expectedCustomerEmail,
+                firstName: expectedCustomerFirstName,
+                lastName: expectedCustomerLastName
             }]
         });
 
-        selectCustomerByCustomerId.mockReturnValue({            
-            'customer_id': expectedCustomerId,
-            'first_name': expectedCustomerFirstName,
-            'last_name': expectedCustomerLastName,
-            'email': expectedCustomerEmail
-            
+        selectCustomerByCustomerId.mockReturnValue({
+            customerId: expectedCustomerId,
+            email: expectedCustomerEmail,
+            firstName: expectedCustomerFirstName,
+            lastName: expectedCustomerLastName
         });
     });
 
@@ -58,7 +56,6 @@ describe('getAllCustomers', () => {
         expect(actualCustomers).toEqual([
             expectedCustomer
         ]);
-
     });
 
     it('should get a customer by a specific customerId', () => {
@@ -69,5 +66,4 @@ describe('getAllCustomers', () => {
 
         expect(actualCustomer).toEqual(expectedCustomer);
     });
-
 });

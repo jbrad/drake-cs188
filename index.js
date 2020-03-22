@@ -1,22 +1,20 @@
 const Hapi = require('@hapi/hapi');
 
-const {
-    initCustomerControllers
-} = require('./controllers/customer-controller');
+const {initCustomerControllers} = require('./controllers/customer-controller');
 const {initCartControllers} = require('./controllers/cart-controller');
-const {
-    initCartItemControllers
-} = require('./controllers/cart-item-controller');
+const {initCartItemControllers} = require('./controllers/cart-items-controller');
 const {initItemControllers} = require('./controllers/item-controller');
 
 const init = async () => {
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
+        host: 'localhost',
+        port: 3000
     });
 
     initCustomerControllers(server);
     initCartControllers(server);
+    initCartItemControllers(server);
+    initItemControllers(server);
 
     await server.start();
     console.log('Server running on %s', server.info.uri);

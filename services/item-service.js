@@ -1,12 +1,12 @@
 const {
     selectItems,
     selectItemByItemId
-} = require('../repositories/item-repository');
+} = require('../repositories/items-repository');
 
 const mapToModel = (item) => ({
-    ItemId: item['item_id'],
-    name: item['name'],
     description: item['description'],
+    itemId: item['item_id'],
+    name: item['name'],
     price: item['price']
 });
 

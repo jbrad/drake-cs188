@@ -16,8 +16,7 @@ jest.mock('../../repositories/cart-repository');
 describe('getAllCarts', () => {
     let expectedFirstCart,
         expectedFirstCartId,
-        expectedCustomerId,
-        expectedSecondCart;
+        expectedCustomerId;
 
     beforeEach(() => {
         expectedFirstCartId = uuid.v4();

@@ -1,5 +1,3 @@
-const uuid = require('uuid');
-
 const {
     selectCustomers,
     selectCustomerByCustomerId
@@ -8,6 +6,8 @@ const {
 describe('customer repository', () => {
     let firstCustomerId,
         secondCustomerId,
+        expectedFirstCustomer,
+        expectedSecondCustomer,
         expectedFirstCustomerFirstName,
         expectedSecondCustomerFirstName,
         expectedFirstCustomerLastName,
@@ -26,16 +26,16 @@ describe('customer repository', () => {
         expectedSecondEmail = 'vy.ngo@drake.edu';
 
         expectedFirstCustomer = {
-            'customer_id': firstCustomerId,
-            'first_name': expectedFirstCustomerFirstName, 
-            'last_name': expectedFirstCustomerLastName, 
-            'email': expectedFirstEmail
+            customerId: firstCustomerId,
+            email: expectedFirstEmail,
+            firstName: expectedFirstCustomerFirstName,
+            lastName: expectedFirstCustomerLastName
         };
         expectedSecondCustomer = {
-            'customer_id': secondCustomerId,
-            'first_name': expectedSecondCustomerFirstName, 
-            'last_name': expectedSecondCustomerLastName, 
-            'email': expectedSecondEmail
+            customerId: secondCustomerId,
+            email: expectedSecondEmail,
+            firstName: expectedSecondCustomerFirstName,
+            lastName: expectedSecondCustomerLastName
         };
     });
 
@@ -47,26 +47,26 @@ describe('customer repository', () => {
             expect(actualFirstCustomer).toEqual(expectedFirstCustomer);
             expect(actualSecondCustomer).toEqual(expectedSecondCustomer);
         });
-    });         
+    });
 
     describe('selectCustomersByCustomerId', () => {
         it('should return a specific customer by customerId', () => {
             const actualFirstCustomer = selectCustomerByCustomerId(firstCustomerId);
 
             expect(actualFirstCustomer).toEqual({
-                'customer_id': firstCustomerId,
-                'first_name': expectedFirstCustomerFirstName, 
-                'last_name': expectedFirstCustomerLastName, 
-                'email': expectedFirstEmail
+                customerId: firstCustomerId,
+                email: expectedFirstEmail,
+                firstName: expectedFirstCustomerFirstName,
+                lastName: expectedFirstCustomerLastName
             });
 
             const actualSecondCustomer = selectCustomerByCustomerId(secondCustomerId);
 
             expect(actualSecondCustomer).toEqual({
-                'customer_id': secondCustomerId,
-                'first_name': expectedSecondCustomerFirstName, 
-                'last_name': expectedSecondCustomerLastName, 
-                'email': expectedSecondEmail
+                customerId: secondCustomerId,
+                email: expectedSecondEmail,
+                firstName: expectedSecondCustomerFirstName,
+                lastName: expectedSecondCustomerLastName
             });
         });
     });

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest-when": "^2.7.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {

@@ -4,10 +4,10 @@ const {
 } = require('../repositories/customer-repository');
 
 const mapToModel = (customer) => ({
-    customerId: customer['customer_id'],
-    firstName: customer['first_name'],
-    lastName: customer['last_name'],
-    email: customer['email']
+    customerId: customer['customerId'],
+    email: customer['email'],
+    firstName: customer['firstName'],
+    lastName: customer['lastName']
 });
 
 const getAllCustomers = () => {
@@ -18,7 +18,6 @@ const getAllCustomers = () => {
 
 const getCustomerByCustomerId = (customerId) => {
     const customer = selectCustomerByCustomerId(customerId);
-    console.log(customer)
 
     return mapToModel(customer);
 };

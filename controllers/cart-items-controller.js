@@ -1,52 +1,51 @@
 const {
-  getAllCartItems,
-  getCartItemByCartItemId,
-  getCartItemsByCartId
-} = require("../services/cart-item-service");
+    getAllCartItems,
+    getCartItemByCartItemId,
+    getCartItemsByCartId
+} = require('../services/cart-item-service');
 
-const getCartItemByCartItemIdRoute = server => {
+const getCartItemByCartItemIdRoute = (server) => {
   server.route({
-    path: "/cart-items/{cartItemId}",
-    method: "GET",
     handler: (request, h) => {
-      const cartItem = getCartItemByCartItemId(request.params, cartItemId);
+      const cartItem = getCartItemByCartItemId(request.params.cartItemId);
 
       if (!cartItem) {
         return h.response().code(404);
       }
 
       return cartItem;
-    }
+    },
+    method: 'GET',
+    path: '/cart-items/{cartItemId}'
   });
 };
 
-const getCartItemsRoute = server => {
+const getCartItemsRoute = (server) => {
   server.route({
-    path: "/cart-items",
-    method: "GET",
-    handler: (request, h) => {
-      return getAllCartItems();
-    }
+    handler: () => getAllCartItems(),
+    method: 'GET',
+    path: '/cart-items'
+
   });
 };
 
-const getCartItemsByCartId = server => {
+const getCartItemsByCartIdRoute = (server) => {
   server.route({
-    path: "/cart/cartId/cart-items",
-    method: "GET",
     handler: (request, h) => {
       const cartItem = getCartItemsByCartId(request.params.cartId);
 
-      if (!customer) {
+      if (!cartItem) {
         return h.response().code(404);
       }
 
       return cartItem;
-    }
+    },
+    method: 'GET',
+    path: '/cart/cartId/cart-items'
   });
 };
 
-const initCustomerControllers = server => {
+const initCartItemControllers = (server) => {
   getCartItemsRoute(server);
   getCartItemByCartItemIdRoute(server);
   getCartItemsByCartIdRoute(server);

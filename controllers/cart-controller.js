@@ -5,16 +5,14 @@ const {
 
 const getCartsRoute = (server) => {
     server.route({
-        path: '/carts',
+        handler: () => getAllCarts(),
         method: 'GET',
-        handler: (request, h) => getAllCarts()
+        path: '/carts'
     });
 };
 
 const getCartByCartIdRoute = (server) => {
     server.route({
-        path: '/carts/{cartId}',
-        method: 'GET',
         handler: (request, h) => {
             const cart = getCartByCartId(request.params.cartId);
 
@@ -23,7 +21,9 @@ const getCartByCartIdRoute = (server) => {
             }
 
             return cart;
-        }
+        },
+        method: 'GET',
+        path: '/carts/{cartId}'
     });
 };
 

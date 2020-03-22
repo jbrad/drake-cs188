@@ -1,31 +1,34 @@
-const {getAllItems, getItemByitemId} = require('../services/item-service');
+const {
+    getAllItems,
+    getItemByitemId
+} = require('../services/item-service');
 
 const getItemsRoute = (server) => {
     server.route({
-        path: '/items',
+        handler: () => getAllItems(),
         method: 'GET',
-        handler: (request, h) => getAllItems()
+        path: '/items'
     });
 };
 
 const getItemByItemIdRoute = (server) => {
     server.route({
-        path: '/customers/{itemId}',
-        method: 'GET',
         handler: (request, h) => {
-            const customer = getItemByitemId(request.params.itemId);
+            const item = getItemByitemId(request.params.itemId);
 
             if (!item) {
                 return h.response().code(404);
             }
 
             return item;
-        }
+        },
+        method: 'GET',
+        path: '/customers/{itemId}'
     });
 };
 
 const initItemControllers = (server) => {
-    getItemRoute(server);
+    getItemsRoute(server);
     getItemByItemIdRoute(server);
 };
 

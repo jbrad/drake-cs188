@@ -49,7 +49,7 @@ describe('cart controller', () => {
     it('should return a cart by cartId', async () => {
         const response = await fakeServer.inject({
             method: 'GET',
-            url: `/customers/${expectedCartId}`
+            url: `/carts/${expectedCartId}`
         });
 
         expect(getCartByCartId).toHaveBeenCalledWith(expectedCartId);
@@ -62,8 +62,8 @@ describe('cart controller', () => {
         const randomCartId = uuid.v4();
 
         const response = await fakeServer.inject({
-            method: 'GET',ustomer
-            url: `/customers/${randomCartId}`
+            method: 'GET',
+            url: `/carts/${randomCartId}`
         });
 
         expect(getCartByCartId).toHaveBeenCalledWith(randomCartId);

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest test",
+    "acceptance": "jest acceptance",
     "lint": "eslint . --ext .json --ext .js",
     "verify": "npm run lint && npm run test"
   },

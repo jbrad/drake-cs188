@@ -1,0 +1,28 @@
+{
+  "name": "drake-cs188",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest test",
+    "acceptance": "jest acceptance",
+    "lint": "eslint . --ext .json --ext .js",
+    "verify": "npm run lint && npm run test"
+  },
+  "author": "jason.bradley@me.com",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "chance": "^1.1.4",
+    "eslint": "^6.8.0",
+    "eslint-config-get-off-my-lawn": "^5.0.1",
+    "frisbee": "^3.1.2",
+    "frisby": "^2.1.2",
+    "jest": "^25.2.4",
+    "jest-when": "^2.7.0"
+  }
+}

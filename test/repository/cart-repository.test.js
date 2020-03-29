@@ -19,12 +19,12 @@ describe('cart repository', () => {
         expectedCustomerId = 'd83ff143-9f8b-445a-8d8f-b9b8fe0f9f28';
 
         expectedFirstCart = {
-            cartId: firstCartId,
-            customerId: expectedCustomerId
+            'cart_id': firstCartId,
+            'customer_id': expectedCustomerId
         };
         expectedSecondCart = {
-            cartId: secondCartId,
-            customerId: expectedCustomerId
+            'cart_id': secondCartId,
+            'customer_id': expectedCustomerId
         };
     });
 
@@ -43,15 +43,15 @@ describe('cart repository', () => {
             const actualFirstCart = selectCartByCartId(firstCartId);
 
             expect(actualFirstCart).toEqual({
-                cartId: firstCartId,
-                customerId: expectedCustomerId
+                'cart_id': firstCartId,
+                'customer_id': expectedCustomerId
             });
 
             const actualSecondCart = selectCartByCartId(secondCartId);
 
             expect(actualSecondCart).toEqual({
-                cartId: secondCartId,
-                customerId: expectedCustomerId
+                'cart_id': secondCartId,
+                'customer_id': expectedCustomerId
             });
         });
     });

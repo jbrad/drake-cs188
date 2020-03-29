@@ -23,7 +23,7 @@ const getItemByItemIdRoute = (server) => {
             return item;
         },
         method: 'GET',
-        path: '/customers/{itemId}'
+        path: '/items/{itemId}'
     });
 };
 

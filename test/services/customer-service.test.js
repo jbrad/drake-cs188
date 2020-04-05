@@ -66,4 +66,12 @@ describe('getAllCustomers', () => {
 
         expect(actualCustomer).toEqual(expectedCustomer);
     });
+
+    it('should return null if there is no customer by customerId', () => {
+        selectCustomerByCustomerId.mockReturnValue(null);
+
+        const actualCustomer = getCustomerByCustomerId(expectedCustomerId);
+
+        expect(actualCustomer).toBeNull();
+    });
 });

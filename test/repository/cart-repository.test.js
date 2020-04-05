@@ -3,7 +3,10 @@ const uuid = require('uuid');
 const {
     selectCarts,
     selectCartByCartId,
-    selectCartsByCustomerId
+    selectCartsByCustomerId,
+    deleteCartByCartId,
+    insertCart,
+    updateCart
 } = require('../../repositories/cart-repository');
 
 describe('cart repository', () => {
@@ -11,7 +14,8 @@ describe('cart repository', () => {
         secondCartId,
         expectedCustomerId,
         expectedFirstCart,
-        expectedSecondCart;
+        expectedSecondCart,
+        expectedCartId;
 
     beforeEach(() => {
         firstCartId = 'd83ff143-9f8b-445a-8d8f-b9b8fe0f9f21';
@@ -31,10 +35,10 @@ describe('cart repository', () => {
     describe('selectCarts', () => {
         it('should return all the carts', () => {
             const actualCarts = selectCarts();
-            const [actualFirstCart, actualSecondCart] = actualCarts.rows;
 
-            expect(actualFirstCart).toEqual(expectedFirstCart);
-            expect(actualSecondCart).toEqual(expectedSecondCart);
+            expect(actualCarts).toEqual({
+                rows: [expectedFirstCart, expectedSecondCart]
+            })
         });
     });
 
@@ -70,6 +74,52 @@ describe('cart repository', () => {
             const actualCarts = selectCartsByCustomerId(uuid.v4());
 
             expect(actualCarts.rows).toEqual([]);
+        });
+    });
+
+    describe('deleteCartByCartId', () => {
+        it('should delete a cart by cartId', () => {
+            deleteCartByCartId(firstCartId);
+
+            const actualCarts = selectCarts();
+
+            expect(actualCarts).toEqual({
+                rows: [expectedSecondCart]
+            });
+        });
+    });
+
+    describe('insertCart', () => {
+        it('should insert a new cart', () => {
+            const newCart = {
+                'cart_id': uuid.v4(),
+                'customer_id': uuid.v4()
+            };
+
+            insertCart(newCart);
+
+            const actualCarts = selectCarts();
+            console.log(actualCarts)
+
+            expect(actualCarts).toEqual({
+                rows: [expectedSecondCart, expectedFirstCart, newCart]
+            }
+            );
+        });
+    });
+
+    describe('updateCart', () => {
+        it('should insert a new carts', () => {
+            const updatedCart = {
+                'cart_id': expectedCartId,
+                'customer_id': 'c2e688b4-ad19-4441-b06a-adc7b9420308'
+        };
+
+            updateCart(updatedCart);
+
+            const actualCart = selectCartByCartId(expectedCartId);
+
+            expect(actualCart).toEqual(updatedCart);
         });
     });
 });

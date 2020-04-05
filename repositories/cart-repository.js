@@ -1,4 +1,4 @@
-const carts = [
+let carts = [
     {
         'cart_id': 'd83ff143-9f8b-445a-8d8f-b9b8fe0f9f21',
         'customer_id': 'd83ff143-9f8b-445a-8d8f-b9b8fe0f9f28'
@@ -10,8 +10,6 @@ const carts = [
 ];
 
 const selectCarts = () => ({
-    driver: 'postgres',
-    error: new Error(),
     rows: carts
 
 });

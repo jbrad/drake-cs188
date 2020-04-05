@@ -43,7 +43,7 @@ const getCartsByCustomerIdRoute = (server) => {
             return carts;
         },
         method: 'GET',
-        path: '/customers/{customerId}/carts'
+        path: '/carts/{customerId}/'
     });
 };
 

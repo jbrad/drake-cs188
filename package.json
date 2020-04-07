@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest test",
+    "test": "jest test --coverage",
     "acceptance": "jest acceptance",
-    "lint": "eslint . --ext .json --ext .js",
+    "lint": "eslint . --ext .json --ext .js --ignore-pattern coverage",
     "verify": "npm run lint && npm run test"
   },
   "author": "jason.bradley@me.com",
@@ -23,5 +23,15 @@
     "frisby": "^2.1.2",
     "jest": "^25.1.0",
     "jest-when": "^2.7.0"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }

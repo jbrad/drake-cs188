@@ -3,7 +3,13 @@ const uuid = require('uuid');
 const {when} = require('jest-when');
 
 const {initCustomerControllers} = require('../../controllers/customer-controller');
-const {getAllCustomers, getCustomerByCustomerId} = require('../../services/customer-service');
+const {
+    getAllCustomers,
+    getCustomerByCustomerId,
+    addCustomer,
+    modifyCustomer,
+    removeCustomerByCustomerId
+} = require('../../services/customer-service');
 const {getCartsByCustomerId} = require('../../services/cart-service');
 
 jest.mock('../../services/customer-service');
@@ -95,5 +101,58 @@ describe('customer controller', () => {
         });
 
         expect(response.statusCode).toEqual(404);
+    });
+
+    it('should be able to create a new customer', async () => {
+        expectedCustomer = {
+            customerId: uuid.v4(),
+            email: 'andybernard@dundermifflin.com',
+            firstName: 'Andy',
+            lastName: 'Bernard'
+        };
+
+        const response = await fakeServer.inject({
+            method: 'POST',
+            payload: expectedCustomer,
+            url: '/customers'
+        });
+
+        expect(response.statusCode).toEqual(201);
+        expect(response.result).toEqual(expectedCustomer);
+
+        expect(addCustomer).toHaveBeenCalledTimes(1);
+        expect(addCustomer).toHaveBeenCalledWith(expectedCustomer);
+    });
+
+    it('should be able to update an existing customer', async () => {
+        const updatedCustomer = {
+            customerId: expectedCustomerId,
+            email: 'andybernard@dundermifflin.com',
+            firstName: 'Andy',
+            lastName: 'Bernard'
+        };
+
+        const response = await fakeServer.inject({
+            method: 'PUT',
+            payload: updatedCustomer,
+            url: `/customers/${expectedCustomerId}`
+        });
+
+        expect(response.statusCode).toEqual(204);
+
+        expect(modifyCustomer).toHaveBeenCalledTimes(1);
+        expect(modifyCustomer).toHaveBeenCalledWith(updatedCustomer);
+    });
+
+    it('should be able to delete an existing customer', async () => {
+        const response = await fakeServer.inject({
+            method: 'DELETE',
+            url: `/customers/${expectedCustomerId}`
+        });
+
+        expect(response.statusCode).toEqual(204);
+
+        expect(removeCustomerByCustomerId).toHaveBeenCalledTimes(1);
+        expect(removeCustomerByCustomerId).toHaveBeenCalledWith(expectedCustomerId);
     });
 });

@@ -4,107 +4,118 @@ const Chance = require('chance');
 
 const chance = new Chance();
 
-describe('/add-to-cart', () => {
-    let item,
-        itemId,
-        description,
-        price,
-        cartItem,
-        cartItemId,
-        cartId,
-        quantity,
+describe('Customers Cart', () => {
+    let firstItem,
+        secondItem,
+        firstCartItem,
+        secondCartItem,
         cart,
-        customer,
-        customerId,
-        firstName,
-        lastName,
-        email;
+        customer;
 
     beforeAll(async () => {
-        itemId = uuid.v4();
-        description = chance.sentence();
-        price = chance.dollar();
-        cartItemId = uuid.v4();
-        quantity = chance.d6();
-        cartId = uuid.v4();
-        customerId = uuid.v4();
-        firstName = chance.first();
-        lastName = chance.last();
-        email = chance.email();
-
         customer = {
-            customerId,
-            email,
-            firstName,
-            lastName
+            customerId: uuid.v4(),
+            email: chance.email(),
+            firstName: chance.first(),
+            lastName: chance.last()
         };
 
         cart = {
-            cartId,
-            customerId
+            cartId: uuid.v4(),
+            customerId: customer.customerId
         };
 
-        item = {
-            description,
-            itemId,
-            price
+        firstItem = {
+            description: 'Drake Bulldogs Sweatpants',
+            itemId: uuid.v4(),
+            price: 25
         };
 
-        cartItem = {
-            cartId,
-            cartItemId,
-            itemId,
-            quantity
+        secondItem = {
+            description: 'Drake Bulldogs Sweatshirt',
+            itemId: uuid.v4(),
+            price: 25
+        };
+
+        firstCartItem = {
+            cartId: cart.cartId,
+            cartItemId: uuid.v4(),
+            itemId: firstItem.itemId,
+            quantity: chance.d6()
+        };
+
+        secondCartItem = {
+            cartId: cart.cartId,
+            cartItemId: uuid.v4(),
+            itemId: secondItem.itemId,
+            quantity: chance.d6()
         };
 
         await frisby.post('http://localhost:3000/customers', customer);
-        await frisby.post('http://localhost:3000/items', item);
         await frisby.post('http://localhost:3000/carts', cart);
-        await frisby.post(`http://localhost:3000/carts/${cartId}/cart-items`, cartItem);
+        await frisby.post('http://localhost:3000/items', firstItem);
+        await frisby.post('http://localhost:3000/items', secondItem);
+        await frisby.post('http://localhost:3000/cart-items', firstCartItem);
+        await frisby.post('http://localhost:3000/cart-items', secondCartItem);
     });
 
     afterAll(async () => {
-        await frisby.del(`http://localhost:3000/carts/${cartId}/cart-items/${cartItemId}`);
-        await frisby.del(`http://localhost:3000/carts/${cartId}`);
-        await frisby.del(`http://localhost:3000/items/${itemId}`);
-        await frisby.del(`http://localhost:3000/customers/${customerId}`);
+        await frisby.del(`http://localhost:3000/cart-items/${firstCartItem.cartItemId}`);
+        await frisby.del(`http://localhost:3000/cart-items/${secondCartItem.cartItemId}`);
+        await frisby.del(`http://localhost:3000/items/${firstItem.itemId}`);
+        await frisby.del(`http://localhost:3000/items/${secondItem.itemId}`);
+        await frisby.del(`http://localhost:3000/carts/${cart.cartId}`);
+        await frisby.del(`http://localhost:3000/customers/${customer.customerId}`);
     });
 
-    test('get all the customers cart information to display', async () => {
+    test('get all the customers cart information to display', async () => { // eslint-disable-line require-await
         const expectedCartInformation = {
             customer: {
-                firstName,
-                itemsInTheCart: [
-                    {
-                        description,
-                        price,
-                        quantity
-                    }
-                ],
-                lastName
-            }
+                email: customer.email,
+                firstName: customer.firstName,
+                lastName: customer.lastName
+            },
+            itemsInTheCart: [
+                {
+                    description: firstItem.description,
+                    price: firstItem.price,
+                    quantity: firstCartItem.quantity
+                },
+                {
+                    description: secondItem.description,
+                    price: secondItem.price,
+                    quantity: secondCartItem.quantity
+                }
+            ]
         };
 
-        const actualCustomer = await frisby.get(`http://localhost:3000/customers/${customerId}`);
-        const customersCarts = await frisby.get(`http://localhost:3000/customers/${customerId}/carts`);
-        const currentCart = customersCarts[0];
-        const cartItems = await frisby.get(`http://localhost:3000/carts/${currentCart.cartId}/cart-items`);
-        const actualCartItem = cartItems[0];
-        const actualItem = await frisby.get(`http://localhost:3000/items/${actualCartItem.itemId}`);
+        const actualCustomer = {};
+        const actualFirstCartItem = {};
+        const actualFirstItem = {};
+        const actualSecondCartItem = {};
+        const actualSecondItem = {};
 
         const actualCartInformation = {
             customer: {
+                email: actualCustomer.email,
                 firstName: actualCustomer.firstName,
-                itemsInTheCart: [
-                    {
-                        description: actualItem.description,
-                        price: actualItem.price,
-                        quantity: actualCartItem.quantity
-                    }
-                ],
                 lastName: actualCustomer.lastName
-            }
+            },
+            itemsInTheCart: [
+                {
+                    description: actualFirstItem.description,
+                    price: actualFirstItem.price,
+                    quantity: actualFirstCartItem.quantity
+                },
+                {
+                    description: actualSecondItem.description,
+                    price: actualSecondItem.price,
+                    quantity: actualSecondCartItem.quantity
+                }
+            ]
         };
+
+        console.log('actualCartInformation', actualCartInformation);
 
         expect(actualCartInformation).toEqual(expectedCartInformation);
     });

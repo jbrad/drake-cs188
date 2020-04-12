@@ -89,11 +89,27 @@ describe('Customers Cart', () => {
             ]
         };
 
-        const actualCustomer = {};
-        const actualFirstCartItem = {};
-        const actualFirstItem = {};
-        const actualSecondCartItem = {};
-        const actualSecondItem = {};
+        const baseUrl = 'http://localhost:3000';
+        const customerIdBaseUrl = `${baseUrl}/customers/${customer.customerId}`;
+
+        const customerResponse = await frisby.get(customerIdBaseUrl);
+        const actualCustomer = customerResponse.json;
+
+        const customersCartResponse = await frisby.get(`${customerIdBaseUrl}/carts`);
+        const actualCart = customersCartResponse.json[0];
+
+        const cartItemsResponse = await frisby.get(`${baseUrl}/carts/${actualCart.cartId}/cart-items`);
+        const actualFirstCartItem = cartItemsResponse.json[0];
+        const actualSecondCartItem = cartItemsResponse.json[1];
+
+        const firstItemResponse = await frisby.get(`${baseUrl}/items/${actualFirstCartItem.itemId}`);
+        const secondItemResponse = await frisby.get(`${baseUrl}/items/${actualSecondCartItem.itemId}`);
+
+        const actualFirstItem = firstItemResponse.json;
+        const actualSecondItem = secondItemResponse.json;
+
+
+
 
         const actualCartInformation = {
             customer: {

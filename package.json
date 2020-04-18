@@ -4,16 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "next start",
     "test": "jest test --coverage",
     "acceptance": "jest acceptance",
     "lint": "eslint . --ext .json --ext .js --ignore-pattern coverage",
-    "verify": "npm run lint && npm run test"
+    "verify": "npm run lint && npm run test",
+    "dev": "next",
+    "build": "next build"
   },
   "author": "jason.bradley@me.com",
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.3.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "uuid": "^3.4.0"
   },
   "devDependencies": {

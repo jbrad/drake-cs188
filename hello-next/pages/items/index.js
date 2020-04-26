@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
+
+
+
 const Index = props => (
     <section>
         <h1> Items Available for Sale</h1>
         <ul>
             {props.items.map(item => (
                 <li key={item.itemId}>
-                    <Link href="/items/[itemId]" as={`/items/${item.itemId}`}>
+                    <Link href="/items/[{itemId}]" as={`/items/${item.itemId}`}>
                         <a>{item.description}</a>
                     </Link>
                 </li>

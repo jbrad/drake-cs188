@@ -5,10 +5,11 @@ export default function Index() {
 	<div>
 		<p>Welcome to Drake University Official Apparel!</p>
 		<Link href="/items">
-			<a title="Start shopping!">Start shopping!</a>
+			<a title="Shop!">Start shopping!</a>
 		</Link>
-		<Link href="/sanity">
-			<a title="Also cool!">yolo!</a>
+		<br></br>
+		<Link href="/cart">
+			<a title="view cart!">view cart!</a>
 		</Link>
 	</div>
 	);

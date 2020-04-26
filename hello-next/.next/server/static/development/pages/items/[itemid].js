@@ -104,22 +104,47 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/[itemid].js";
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "uuid");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/[itemid].js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const addItemToCart = async itemId => {
+  const customerResponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()('http://localhost:5555/customers');
+  const [customer] = await customerResponse.json();
+  const cartResponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`http://localhost:5555/customers/${customer.customerId}/carts`);
+  const [cart] = await cartResponse.json();
+  await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`http://localhost:5555/cart-items`, {
+    method: 'POST',
+    body: JSON.stringify({
+      cartItemId: uuid__WEBPACK_IMPORTED_MODULE_2___default.a.v4(),
+      cartId: `${cart.cartId}`,
+      itemId,
+      quantity: 1
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+};
 
 const Index = props => __jsx("section", {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 2,
+    lineNumber: 26,
     columnNumber: 5
   }
 }, __jsx("h1", {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 3,
+    lineNumber: 27,
     columnNumber: 9
   }
 }, "Item Details"), __jsx("img", {
@@ -127,32 +152,41 @@ const Index = props => __jsx("section", {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 4,
+    lineNumber: 28,
     columnNumber: 9
   }
 }), __jsx("p", {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5,
+    lineNumber: 29,
     columnNumber: 9
   }
 }, "Description: ", props.item.description), __jsx("p", {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 6,
+    lineNumber: 30,
     columnNumber: 9
   }
-}, "Price: $", props.item.price));
+}, "Price: $", props.item.price), __jsx("button", {
+  type: "button",
+  onClick: () => addItemToCart(props.item.itemId),
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 31,
+    columnNumber: 9
+  }
+}, "Add to Cart"));
 
 Index.getInitialProps = async function (context) {
   const itemId = context.query.itemid;
-  const res = await fetch(`http://localhost:5555/items/${itemId}`);
-  const item = await res.json();
-  console.log(itemId);
-  console.log(res);
-  console.log(`Show data fetched. Item: ${item}`);
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(`http://localhost:5555/items/${itemId}`);
+  const item = await res.json(); //    console.log(itemId)
+  //    console.log(res)
+  //    console.log(`Show data fetched. Item: ${item}` );
+
   return {
     item
   };
@@ -169,8 +203,19 @@ Index.getInitialProps = async function (context) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/[itemid].js */"./pages/items/[itemid].js");
+module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/[itemid].js */"./pages/items/[itemid].js");
 
+
+/***/ }),
+
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
@@ -182,6 +227,17 @@ module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "uuid":
+/*!***********************!*\
+  !*** external "uuid" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("uuid");
 
 /***/ })
 

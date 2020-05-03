@@ -104,7 +104,7 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/[itemid].js";
+var _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/[itemid].js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -169,7 +169,7 @@ Index.getInitialProps = async function (context) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/[itemid].js */"./pages/items/[itemid].js");
+module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/[itemid].js */"./pages/items/[itemid].js");
 
 
 /***/ }),

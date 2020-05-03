@@ -20,15 +20,7 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/items": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/items/[itemid]": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/next/dist/pages/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

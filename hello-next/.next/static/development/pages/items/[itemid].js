@@ -12,10 +12,10 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js!./":
-/*!********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js ***!
-  \********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2FcartTest%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js!./":
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2FcartTest%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -802,7 +802,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _this = undefined,
-    _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/[itemid].js";
+    _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/[itemid].js";
 
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
@@ -884,13 +884,13 @@ Index.getInitialProps = function _callee(context) {
 /***/ }),
 
 /***/ 4:
-/*!************************************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js ***!
-  \************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2FcartTest%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js ***!
+  \***********************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2FcartTest%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fitems%2F%5Bitemid%5D&absolutePagePath=%2FUsers%2Fscottmolloy%2FDesktop%2F04%20software_engineering%2FcartTest%2Fhello-next%2Fpages%2Fitems%2F%5Bitemid%5D.js!./");
 
 
 /***/ }),

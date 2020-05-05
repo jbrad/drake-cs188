@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest test --coverage",
+    "test": "jest test",
     "acceptance": "jest acceptance",
     "lint": "eslint . --ext .json --ext .js --ignore-pattern coverage",
     "verify": "npm run lint && npm run test"

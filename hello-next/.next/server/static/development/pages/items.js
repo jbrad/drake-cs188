@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1799,7 +1799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/index.js";
+var _jsxFileName = "/Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1865,14 +1865,14 @@ Index.getInitialProps = async function () {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!************************************!*\
   !*** multi ./pages/items/index.js ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_engineering/hello-next/pages/items/index.js */"./pages/items/index.js");
+module.exports = __webpack_require__(/*! /Users/scottmolloy/Desktop/04 software_engineering/cartTest/hello-next/pages/items/index.js */"./pages/items/index.js");
 
 
 /***/ }),
